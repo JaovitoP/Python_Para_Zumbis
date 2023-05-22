@@ -1,3 +1,6 @@
+#Nome: João Vitor Dos Santos Pereira
+#Turma: 1ºDSM
+
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -25,8 +28,11 @@ def verbing(s):
 # Se 'bad' aparece depois de 'not' troca 'not' ... 'bad' por 'good'
 # Assim 'This dinner is not that bad!' retorna 'This dinner is good!'
 def not_bad(s):
-    if 'not', 'bad' in s:
-        s=s.replace('not', 'bad')
+  n=s.find('not')
+  b=s.find('bad')
+  if b>n:
+    s=s[:n] + 'good' + s[b+3:]
+  return s
 
 # I. inicio_final
 # Divida cada string em dois pedaços.
@@ -36,26 +42,46 @@ def not_bad(s):
 # Dadas 2 strings, a e b, retorna a string
 # a_inicio + b_inicio + a_final + b_final
 def inicio_final(a, b):
-  
+  a_meio=len(a)//2
+  b_meio=len(b)//2
+  if len(a)%2 == 1:  # aumenta 1 se len é impar
+    a_meio = a_meio + 1
+  if len(b)%2 == 1:
+    b_meio = b_meio + 1 
+  return a[:a_meio] + b[:b_meio] + a[a_meio:] + b[b_meio:] 
 
 # J. zeros finais
 # Verifique quantos zeros há no final de um número inteiro positivo
 # Exemplo: 10010 tem 1 zero no fim e 908007000 possui três
 def zf(n):
-  return
+  n = str(n)[::-1]
+  k = 0
+  while n[k] == '0':
+    k = k + 1
+  return k
+  a = int(str(n)[::-1])
+  return len(str(n)) - len(str(a))
 
 # K. conta 2
 # Verifique quantas vezes o dígito 2 aparece entre 0 e n-1
 # Exemplo: para n = 20 o dígito 2 aparece duas vezes entre 0 e 19
 def conta2(n):
-  return
+  s = ''
+  for i in range(n):
+    s = s + str(i)
+  return s.count('2')
 
 # L. inicio em potencia de 2
 # Dado um número inteiro positivo n retorne a primeira potência de 2
 # que tenha o início igual a n
 # Exemplo: para n = 65 retornará 16 pois 2**16 = 65536
 def inip2(n):
-  
+  k = 0
+  while True:
+    pot = str(2**k)
+    if pot.startswith(str(n)):
+      return k
+    k = k + 1  
 
 def test(obtido, esperado):
   if obtido == esperado:
