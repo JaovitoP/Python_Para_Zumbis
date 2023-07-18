@@ -10,7 +10,7 @@
 
 # D. Dada uma lista de números retorna uma lista sem os elementos repetidos
 def remove_iguais(nums):
-  return
+  return list(set(nums))
 
 # E. Cripto desafio!!
 # Dada uma frase, você deve retirar todas as letras repetidas das palavras
